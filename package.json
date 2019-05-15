@@ -1,0 +1,20 @@
+{
+  "name": "predicate-compiler",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/main.coffee",
+  "scripts": {
+    "test": "webpack && jasmine --config=jasmine.json",
+    "start": "coffee src/main.coffee"
+  },
+  "author": "Ruslan Panasiuk <ruslan.panasiuk@gmail.com>",
+  "license": "Zlib",
+  "devDependencies": {
+    "coffee-loader": "^0.9.0",
+    "coffeescript": "^2.3.2",
+    "jasmine": "^3.3.1",
+    "underscore": "^1.9.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
