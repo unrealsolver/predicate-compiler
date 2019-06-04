@@ -1,3 +1,3 @@
-require './tokenizer.spec.coffee'
-require './parser.spec.coffee'
-require './rpnToAst.spec.coffee'
+require './tokenize/tokenizer.spec.coffee'
+require './parse/parser.spec.coffee'
+require './parse/rpnToAst.spec.coffee'

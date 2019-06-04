@@ -1,2 +1,4 @@
-fsm = require './tokenizer.coffee'
-parser = require './parser.coffee'
+#process.env.NODE_PATH = __dirname
+#require('module').Module._initPaths()
+#fsm = require 'tokenize/tokenizer.coffee'
+#parser = require 'parse/parser.coffee'

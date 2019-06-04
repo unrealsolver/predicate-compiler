@@ -4,7 +4,7 @@ translate = (node) ->
     [false, tok.token]
   if tok.kind in ['String']
     [false, "\"#{tok.token}\""]
-  else if tok.kind is 'and'
+  else if tok.kind is 'andop'
     [true, ', ']
   else if tok.kind is 'ltop'
     [false, "{lt: {#{node.lhs.token}: #{node.rhs.token}}}"]

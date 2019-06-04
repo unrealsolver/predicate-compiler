@@ -1,9 +1,7 @@
 fsm = require './tokenizer.coffee'
 _ = require 'underscore'
-
-deflate = (gen) ->
-  for val from gen
-    val
+deflate = (require './utils.coffee').deflate
+evaluate = require './evaluate.coffee'
 
 checkSingleToken = (kind, token) ->
   tokens = deflate fsm.tokenize token
@@ -49,6 +47,15 @@ describe 'Tokenizer/', () ->
     it 'allows composite operators', ->
       checkSingleToken 'lteqop', '<='
 
+  describe 'Eval/', () ->
+    it 'Evaluates numbers', ->
+      tokens = evaluate deflate fsm.tokenize '123.456'
+      expect(tokens[0].evaluated).toBe 123.456
+
+    it 'Evaluates and/or operators', ->
+      tokens = evaluate deflate fsm.tokenize 'and or'
+      expect(tokens[0].kind).toBe 'andop'
+      expect(tokens[1].kind).toBe 'orop'
 
   it 'allows string literals', ->
     checkSingleToken 'String', 'some_string'
@@ -160,5 +167,10 @@ describe 'Tokenizer/', () ->
 
   it 'allows AND', ->
     input = 'a < 5 and b < 2'
+    tokens = deflate fsm.tokenize input
+    expect(_.map(tokens, (d) -> d.token).join(' ')).toBe input
+
+  it 'allows OR', ->
+    input = 'A OR B'
     tokens = deflate fsm.tokenize input
     expect(_.map(tokens, (d) -> d.token).join(' ')).toBe input

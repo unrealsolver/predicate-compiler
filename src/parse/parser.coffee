@@ -19,10 +19,6 @@ getParser = ->
 
   (tokens) ->
     for t in tokens
-      # Inline eval
-      if t.kind == 'String' and t.token == 'and'
-        t.kind = 'and'
-
       if t.kind in ['Number', 'String']
         rpn.push t
       else

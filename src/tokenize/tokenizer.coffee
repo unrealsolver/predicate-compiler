@@ -1,10 +1,12 @@
 _ = require('underscore')
 
 grammar = [
+  # ENTRY
   name: '*'
   matcher: /./
   next: ['num', 'dot', 'lt', 'strlit', 'ws']
 ,
+  # WHITESPACE
   name: 'ws'
   matcher: /\s/
   next: ['ws', '*']
@@ -15,6 +17,7 @@ grammar = [
   next: ['strlit', '*']
   token: 'String'
 ,
+  # NUMBER
   name: 'num'
   matcher: /\d/
   next: ['num', 'dot', 'exp', '*']
@@ -47,15 +50,18 @@ grammar = [
   next: ['num-e', '*']
   forbid: ['dot']
 ,
+  # ERROR
   name: 'error'
   matcher: null
   next: null
   token: 'Error!'
 ,
+  # TERMINAL
   name: 'T'
   matcher: /\n/
   next: null
 ,
+  # OPS
   name: 'lt'
   matcher: /\</
   next: ['lt+eq', '*']
@@ -66,25 +72,13 @@ grammar = [
   next: ['*']
   token: 'lteqop'
 ,
-  name: 'a'
-  matcher: /\a/i
-  next: ['n']
-,
-  name: 'n'
-  matcher: /\n/i
-  next: ['d']
-,
-  name: 'd'
-  matcher: /\d/i
-  next: ['*']
-  token: 'and'
 ]
 
 getState = (name) -> _.findWhere grammar, {name}
 tokens = []
 TERMINAL = '[T]'
 
-# TODO Do I understand how does this thing work? Hell, NO... :D
+# TODO Do I understand how does this thing work? Heck, NO... :D
 createFSM = (graph) ->
   sequence = ''
   initial = getState '*'

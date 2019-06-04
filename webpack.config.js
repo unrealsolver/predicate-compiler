@@ -16,4 +16,11 @@ module.exports = {
       use: ['coffee-loader'],
     }],
   },
+  resolve: {
+    modules: [path.resolve(__dirname, './src'), 'node_modules'],
+    extensions: ['.coffee'],
+    alias: {
+      reducers: path.resolve(__dirname, './src/reducers'),
+    },
+  },
 }
