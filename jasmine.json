@@ -4,7 +4,6 @@
     "specs-dist.js"
   ],
   "helpers": [
-    "helpers/**/*.js"
   ],
   "stopSpecOnExpectationFailure": false,
   "random": false

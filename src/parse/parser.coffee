@@ -13,22 +13,20 @@ syntax =
   '!': UNARY
   not: UNARY
 
-getParser = ->
+parse = (tokens) ->
   stack = []
   rpn = []
-
-  (tokens) ->
-    for t in tokens
-      if t.kind in ['Number', 'String']
-        rpn.push t
+  for t in tokens
+    if t.kind in ['Number', 'String']
+      rpn.push t
+    else
+      head = _.last stack
+      if head and syntax[t.token] <= syntax[head.token]
+        rpn = rpn.concat stack.reverse()
+        stack = [t]
       else
-        head = _.last stack
-        if head and syntax[t.token] <= syntax[head.token]
-          rpn = rpn.concat stack.reverse()
-          stack = [t]
-        else
-          stack.push t
+        stack.push t
 
-    return rpn.concat stack.reverse()
+  return rpn.concat stack.reverse()
 
-module.exports = getParser
+module.exports = parse

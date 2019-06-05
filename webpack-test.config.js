@@ -1,10 +1,9 @@
 const path = require('path')
-const UgifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
-    main: './src/main.coffee',
+    specs: './src/specs.coffee',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -19,15 +18,5 @@ module.exports = {
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
     extensions: ['.coffee'],
-  },
-  externals: {
-    underscore: {
-      commonjs: 'underscore',
-      amd: 'underscore',
-      root: '_',
-    },
-  },
-  optimization: {
-    minimize: true,
   },
 }

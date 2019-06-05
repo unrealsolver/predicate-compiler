@@ -1,10 +1,11 @@
 _ = require 'underscore'
 rpnToAst = require './rpnToAst.coffee'
-getParser = require './parser.coffee'
+parse = require './parser.coffee'
 fsm = require 'tokenize/tokenizer.coffee'
 evaluate = require 'tokenize/evaluate.coffee'
 transform = require 'transformers/django.coffee'
 transformMdb = require 'transformers/mdb.coffee'
+compose = require 'util/compose'
 
 deflate = (require 'tokenize/utils.coffee').deflate
 
@@ -14,19 +15,14 @@ reduceAst = (ast) ->
   else
     ast._t
 
-compose = (...fns) ->
-  _.compose.apply _, fns.reverse()
-
 describe 'RPN To AST/', () ->
   it 'converts to ast', () ->
-    parse = getParser()
-
     expect(
       compose(
         fsm.tokenize,
         deflate,
         evaluate,
-        getParser(),
+        parse,
         rpnToAst,
         transform,
         reduceAst
@@ -34,14 +30,12 @@ describe 'RPN To AST/', () ->
     ).toBe 'weight__lt=70&age__lt=30'
 
   it 'converts mdb to ast', () ->
-    parse = getParser()
-
     expect(
       compose(
         fsm.tokenize,
         deflate,
         evaluate,
-        getParser(),
+        parse,
         rpnToAst,
         transformMdb,
         reduceAst

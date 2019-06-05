@@ -71,7 +71,6 @@ grammar = [
   matcher: /\=/
   next: ['*']
   token: 'lteqop'
-,
 ]
 
 getState = (name) -> _.findWhere grammar, {name}

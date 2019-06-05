@@ -2,9 +2,9 @@
   "name": "predicate-compiler",
   "version": "0.1.0",
   "description": "",
-  "main": "src/main.coffee",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "webpack && jasmine --config=jasmine.json",
+    "test": "webpack --config=webpack-test.config.js && jasmine --config=jasmine.json",
     "start": "coffee src/main.coffee"
   },
   "author": "Ruslan Panasiuk <ruslan.panasiuk@gmail.com>",
@@ -13,8 +13,11 @@
     "coffee-loader": "^0.9.0",
     "coffeescript": "^2.3.2",
     "jasmine": "^3.3.1",
+    "uglifyjs-webpack-plugin": "^2.1.3",
     "underscore": "^1.9.1",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
-  }
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {}
 }
