@@ -1,6 +1,6 @@
 # The parser implements  Dijkstra Shunting Yard algorithm
+import _ from 'underscore'
 
-_ = require 'underscore'
 UNARY = Symbol 'Unary operator'
 
 syntax =
@@ -29,4 +29,4 @@ parse = (tokens) ->
 
   return rpn.concat stack.reverse()
 
-module.exports = parse
+export default parse

@@ -8,4 +8,4 @@ evaluate = (tokens) ->
         tok.kind = tokLower + 'op'
     tok
 
-module.exports = evaluate
+export default evaluate

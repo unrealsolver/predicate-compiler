@@ -1,7 +1,7 @@
-fsm = require './tokenizer.coffee'
-_ = require 'underscore'
-deflate = (require './utils.coffee').deflate
-evaluate = require './evaluate.coffee'
+import _ from 'underscore'
+import fsm from './tokenizer'
+import { deflate } from './utils'
+import evaluate from './evaluate'
 
 checkSingleToken = (kind, token) ->
   tokens = deflate fsm.tokenize token

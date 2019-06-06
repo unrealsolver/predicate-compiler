@@ -1,4 +1,4 @@
-_ = require 'underscore'
+import _ from 'underscore'
 
 ###
 <S>  ::= <pc> | <pc> <boolop> <pc>
@@ -48,7 +48,4 @@ getParser = ->
         # reduce
         stack.push {kind: mathchedRule[0], content: t}
 
-
-
-
-module.exports = getParser
+export default getParser

@@ -1,4 +1,4 @@
-_ = require('underscore')
+import _ from 'underscore'
 
 grammar = [
   # ENTRY
@@ -172,4 +172,4 @@ createFSM = (graph) ->
 
   tokenize: tokenize
 
-module.exports = createFSM grammar
+export default createFSM grammar

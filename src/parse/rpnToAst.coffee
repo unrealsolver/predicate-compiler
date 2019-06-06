@@ -19,4 +19,4 @@ rpnToAst = (rpn) ->
 
   return stack[0]
 
-module.exports = rpnToAst
+export default rpnToAst

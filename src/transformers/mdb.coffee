@@ -19,4 +19,4 @@ transform = (ast) ->
 
   ast
 
-module.exports = transform
+export default transform

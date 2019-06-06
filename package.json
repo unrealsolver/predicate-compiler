@@ -1,5 +1,6 @@
 {
   "name": "predicate-compiler",
+  "type": "module",
   "version": "0.1.0",
   "description": "",
   "main": "dist/main.js",

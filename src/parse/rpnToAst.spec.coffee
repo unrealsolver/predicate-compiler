@@ -1,13 +1,12 @@
-_ = require 'underscore'
-rpnToAst = require './rpnToAst.coffee'
-parse = require './parser.coffee'
-fsm = require 'tokenize/tokenizer.coffee'
-evaluate = require 'tokenize/evaluate.coffee'
-transform = require 'transformers/django.coffee'
-transformMdb = require 'transformers/mdb.coffee'
-compose = require 'util/compose'
-
-deflate = (require 'tokenize/utils.coffee').deflate
+import _ from 'underscore'
+import rpnToAst from './rpnToAst'
+import parse from './parser'
+import fsm from 'tokenize/tokenizer'
+import evaluate from 'tokenize/evaluate'
+import transform from 'transformers/django'
+import transformMdb from 'transformers/mdb'
+import compose from 'util/compose'
+import { deflate } from 'tokenize/utils'
 
 reduceAst = (ast) ->
   if ast and  ast.lhs?._t and ast.rhs?._t

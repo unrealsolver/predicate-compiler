@@ -2,7 +2,7 @@ const path = require('path')
 const UgifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     main: './src/main.coffee',
   },

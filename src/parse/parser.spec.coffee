@@ -1,9 +1,9 @@
-_ = require 'underscore'
-fsm = require 'tokenize/tokenizer.coffee'
-evaluate = require 'tokenize/evaluate.coffee'
-parse = require './parser.coffee'
-getAstParser = require './astparser.coffee'
-deflate = (require 'tokenize/utils.coffee').deflate
+import _ from 'underscore'
+import fsm from 'tokenize/tokenizer.coffee'
+import evaluate from 'tokenize/evaluate.coffee'
+import parse from './parser.coffee'
+import getAstParser from './astparser.coffee'
+import { deflate } from 'tokenize/utils.coffee'
 
 
 describe 'Parser/', ->
