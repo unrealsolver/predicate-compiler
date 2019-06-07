@@ -1,42 +1,28 @@
 import _ from 'underscore'
-import rpnToAst from './rpnToAst'
-import parse from './parser'
-import fsm from 'tokenize/tokenizer'
-import evaluate from 'tokenize/evaluate'
-import transform from 'transformers/django'
-import transformMdb from 'transformers/mdb'
-import compose from 'util/compose'
-import { deflate } from 'tokenize/utils'
+import { Node, rpnToAst } from './rpnToAst'
+import { NumTok, StrTok, LtTok, AndTok } from 'tokenize/token'
 
-reduceAst = (ast) ->
-  if ast and  ast.lhs?._t and ast.rhs?._t
-    reduceAst(ast.lhs) + ast._t + reduceAst(ast.rhs)
-  else
-    ast._t
-
-describe 'RPN To AST/', () ->
-  it 'converts to ast', () ->
+describe 'RPN To AST/', ->
+  it 'accepts simple RPN', ->
     expect(
-      compose(
-        fsm.tokenize,
-        deflate,
-        evaluate,
-        parse,
-        rpnToAst,
-        transform,
-        reduceAst
-      )('weight < 70 and age < 30')
-    ).toBe 'weight__lt=70&age__lt=30'
+      rpnToAst [StrTok('val'), NumTok(0), LtTok]
+    ).toEqual(
+      new Node(LtTok, StrTok('val'), NumTok(0))
+    )
 
-  it 'converts mdb to ast', () ->
+  it 'accepts more sophisticated RPN', ->
     expect(
-      compose(
-        fsm.tokenize,
-        deflate,
-        evaluate,
-        parse,
-        rpnToAst,
-        transformMdb,
-        reduceAst
-      )('weight < 70 and age < 30')
-    ).toBe '{lt: {weight: 70}}, {lt: {age: 30}}'
+      rpnToAst [StrTok('val'), NumTok(0), LtTok, StrTok('lav'), NumTok(1), LtTok, AndTok]
+    ).toEqual(
+      new Node(
+        AndTok,
+        new Node(
+          LtTok,
+          StrTok('val'), NumTok(0)
+        ),
+        new Node(
+          LtTok
+          StrTok('lav'), NumTok(1)
+        )
+      )
+    )

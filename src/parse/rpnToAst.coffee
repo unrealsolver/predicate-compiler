@@ -19,4 +19,4 @@ rpnToAst = (rpn) ->
 
   return stack[0]
 
-export default rpnToAst
+export {Node, rpnToAst}

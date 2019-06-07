@@ -63,7 +63,7 @@ grammar = [
 ,
   # OPS
   name: 'lt'
-  matcher: /\</
+  matcher: /</
   next: ['lt+eq', '*']
   token: 'ltop'
 ,
